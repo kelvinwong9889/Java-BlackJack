@@ -11,11 +11,10 @@ public class Main {
     public static void main(String[] args) {
 
         Deck deck = new Deck();
-        deck.createDeck();
         deck.printCards();
-        
+
         System.out.println("\nShuffle Deck!!!");
-        deck.shuffleDeck();
+        deck.shuffle();
         deck.printCards();
 
 //        TestMode testMode = new TestMode();

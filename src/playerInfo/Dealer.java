@@ -1,18 +1,15 @@
 package playerInfo;
 
-public class Player extends Person {
+public class Dealer extends Person {
 
     private final String name;
 
-    public Player(String name) {
-        this.name = name;
+    public Dealer() {
+        this.name = "Dealer";
     }
 
     @Override
     public String getName() {
         return name;
     }
-
-    // hit
-    // stand
 }

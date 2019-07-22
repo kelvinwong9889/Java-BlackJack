@@ -3,23 +3,23 @@ package cardInfo;
 public class Card {
 
     // Card's information
-    private final CardSuit suit;
-    private final CardNum num;
+    private final Suit suit;
+    private final Rank rank;
 
-    public Card(CardSuit suit, CardNum num) {
+    public Card(Suit suit, Rank rank) {
         this.suit = suit;
-        this.num = num;
+        this.rank = rank;
     }
 
-    public CardSuit getSuit() {
+    public Suit getSuit() {
         return suit;
     }
 
-    public CardNum getNum() {
-        return num;
+    public Rank getRank() {
+        return rank;
     }
-    
+
     public String toString() {
-        return suit.getCardSuit() + ":" + num.getCardNum();
+        return suit.getSuit() + ":" + rank.getNumber();
     }
 }
