@@ -12,4 +12,9 @@ public class Dealer extends Person {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String showCards() {
+        return name + ": " + super.showCards();
+    }
 }

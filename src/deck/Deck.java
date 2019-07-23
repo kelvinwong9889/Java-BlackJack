@@ -5,6 +5,7 @@ import cardInfo.Rank;
 import cardInfo.Suit;
 import java.util.ArrayList;
 import java.util.Collections;
+import playerInfo.Person;
 
 public class Deck {
 
@@ -13,9 +14,9 @@ public class Deck {
 
     // Create the deck for BlackJack game
     public Deck() {
-        cards = new ArrayList<Card>();
+        cards = new ArrayList<>();
 
-        // Create 52 cards from Card class
+        // Create 52 cards
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 this.cards.add(new Card(suit, rank));
@@ -23,12 +24,25 @@ public class Deck {
         }
     }
 
+    // Create 52 cards
+//    public void createDeck() {
+//        for (Suit suit : Suit.values()) {
+//            for (Rank rank : Rank.values()) {
+//                this.cards.add(new Card(suit, rank));
+//            }
+//        }
+//    }
     // Shuffle all the cards
     public void shuffle() {
         Collections.shuffle(cards);
     }
-    
-    // Give two cards for first round
+
+    // Give card to player or dealer
+    public Card giveCard() {
+        Card card = cards.remove(cards.size() - 1);
+        System.out.println("Card Size: " + cards.size());
+        return card;
+    }
 
     // TESTING
     public void printCards() {

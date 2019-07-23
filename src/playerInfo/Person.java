@@ -13,11 +13,16 @@ public abstract class Person {
 
     public abstract String getName();
 
-    public void showCards(ArrayList<Card> playerHand) {
-
+    public void getCard(Card card) {
+        personHand.add(card);
     }
 
-    public void getCard(Card card) {
-
+    public String showCards() {
+        String message = "[ ";
+        for (Card card : personHand) {
+            message += card + " ";
+        }
+        message += "]";
+        return message;
     }
 }

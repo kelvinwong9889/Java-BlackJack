@@ -13,6 +13,11 @@ public class Player extends Person {
         return name;
     }
 
+    @Override
+    public String showCards() {
+        return name + ": " + super.showCards();
+    }
+
     // hit
     // stand
 }

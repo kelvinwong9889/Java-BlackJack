@@ -1,7 +1,12 @@
 package blackjack;
 
+import cardInfo.Card;
 import deck.Deck;
+import java.util.ArrayList;
 import java.util.Scanner;
+import playerInfo.Dealer;
+import playerInfo.Person;
+import playerInfo.Player;
 
 public class Main {
 
@@ -9,21 +14,23 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        ArrayList<Person> persons = new ArrayList<>();
+        
         Deck deck = new Deck();
-        deck.printCards();
-
-        System.out.println("\nShuffle Deck!!!");
         deck.shuffle();
+        System.out.println("\nShuffle Deck!!!");
         deck.printCards();
-
-//        TestMode testMode = new TestMode();
-//        
-//        // Decide go to test mode or play game mode
-//        if (testMode.isTestMode()) {
-//            System.out.println("Test mode");
-//        } else {
-//            System.out.println("Play game mode");
-//        }
+        
+        Person player1 = new Player("Player 1");
+        Person player2 = new Player("Player 2");
+        Person dealer = new Dealer();
+        
+        player1.getCard(deck.giveCard());
+        player2.getCard(deck.giveCard());
+        dealer.getCard(deck.giveCard());
+        
+        System.out.println(player1.showCards());
+        System.out.println(player2.showCards());
+        System.out.println(dealer.showCards());
     }
 }
