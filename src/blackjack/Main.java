@@ -1,12 +1,9 @@
 package blackjack;
 
-import cardInfo.Card;
 import deck.Deck;
-import java.util.ArrayList;
 import java.util.Scanner;
 import playerInfo.Dealer;
 import playerInfo.Person;
-import playerInfo.Player;
 
 public class Main {
 
@@ -14,23 +11,31 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        ArrayList<Person> persons = new ArrayList<>();
-        
-        Deck deck = new Deck();
-        deck.shuffle();
-        System.out.println("\nShuffle Deck!!!");
-        deck.printCards();
-        
-        Person player1 = new Player("Player 1");
-        Person player2 = new Player("Player 2");
-        Person dealer = new Dealer();
-        
-        player1.getCard(deck.giveCard());
-        player2.getCard(deck.giveCard());
-        dealer.getCard(deck.giveCard());
-        
-        System.out.println(player1.showCards());
-        System.out.println(player2.showCards());
-        System.out.println(dealer.showCards());
+        while (true) {
+            try {
+                int numOfPlayer;
+
+                // Create a number of players based on user input
+                System.out.print("How many players (1-4)? ");
+                numOfPlayer = sc.nextInt();
+
+                if (numOfPlayer >= 1 && numOfPlayer <= 4) {
+                    // Create dealer
+                    Person dealer = new Dealer();
+                    // Create deck and shuffle 52 cards
+                    Deck deck = new Deck();
+
+                    deck.printCards();
+
+                    Game game = new Game(numOfPlayer, dealer, deck);
+                    game.start();
+                } else {
+                    System.out.println("You must input the number of player between 1 and 4.");
+                }
+            } catch (Exception e) {
+                System.out.println("You must input the number of player between 1 and 4.");
+                sc.next();
+            }
+        }
     }
 }

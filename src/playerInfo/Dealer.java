@@ -15,6 +15,6 @@ public class Dealer extends Person {
 
     @Override
     public String showCards() {
-        return name + ": " + super.showCards();
+        return name + "'s Hand: " + super.showCards();
     }
 }

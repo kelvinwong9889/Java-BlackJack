@@ -5,7 +5,6 @@ import cardInfo.Rank;
 import cardInfo.Suit;
 import java.util.ArrayList;
 import java.util.Collections;
-import playerInfo.Person;
 
 public class Deck {
 
@@ -22,26 +21,20 @@ public class Deck {
                 this.cards.add(new Card(suit, rank));
             }
         }
-    }
 
-    // Create 52 cards
-//    public void createDeck() {
-//        for (Suit suit : Suit.values()) {
-//            for (Rank rank : Rank.values()) {
-//                this.cards.add(new Card(suit, rank));
-//            }
-//        }
-//    }
-    // Shuffle all the cards
-    public void shuffle() {
+        // Shuffle all the cards
         Collections.shuffle(cards);
     }
 
     // Give card to player or dealer
-    public Card giveCard() {
-        Card card = cards.remove(cards.size() - 1);
-        System.out.println("Card Size: " + cards.size());
-        return card;
+    public Card giveCard() throws Exception {
+        if (cards.size() > 0) {
+            Card card = cards.remove(cards.size() - 1);
+            System.out.println("Card Size: " + cards.size());
+            return card;
+        } else {
+            throw new Exception();
+        }
     }
 
     // TESTING
