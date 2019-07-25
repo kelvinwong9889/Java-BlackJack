@@ -1,14 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package blackjack;
 
-/**
- *
- * @author User
- */
 public class Rule {
-    
+
+    // Blackjack
+    public boolean isBlackJack(int personPoint) {
+        return (personPoint == 21);
+    }
+
+    // Bust
+    public boolean isBust(int personPoint) {
+        return (personPoint > 21);
+    }
+
+    // Win
+    public boolean isWin(int playerPoint, int dealerPoint) {
+        return (playerPoint > dealerPoint);
+    }
+
+    // Push
+    public boolean isPush(int playerPoint, int dealerPoint) {
+        return (playerPoint == dealerPoint);
+    }
+
+    // Lose
+    public boolean isLose(int playerPoint, int dealerPoint) {
+        return (playerPoint < dealerPoint);
+    }
 }

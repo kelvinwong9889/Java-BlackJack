@@ -12,6 +12,11 @@ public class Dealer extends Person {
     public String getName() {
         return name;
     }
+    
+    @Override
+    public String showFirstRoundCards() {
+        return name + "'s Hand: " + super.showFirstRoundCards();
+    }
 
     @Override
     public String showCards() {

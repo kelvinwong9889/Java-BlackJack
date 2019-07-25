@@ -11,11 +11,12 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         while (true) {
             try {
                 int numOfPlayer;
 
-                // Create a number of players based on user input
+                // Create a number of players
                 System.out.print("How many players (1-4)? ");
                 numOfPlayer = sc.nextInt();
 
@@ -25,10 +26,10 @@ public class Main {
                     // Create deck and shuffle 52 cards
                     Deck deck = new Deck();
 
-                    deck.printCards();
-
-                    Game game = new Game(numOfPlayer, dealer, deck);
+                    // Start blackjack game once only
+                    Game game = new Game(numOfPlayer, dealer, deck, sc);
                     game.start();
+                    break;
                 } else {
                     System.out.println("You must input the number of player between 1 and 4.");
                 }

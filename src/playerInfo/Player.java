@@ -12,6 +12,11 @@ public class Player extends Person {
     public String getName() {
         return name;
     }
+    
+    @Override
+    public String showFirstRoundCards() {
+        return name + "'s Hand: " + super.showFirstRoundCards();
+    }
 
     @Override
     public String showCards() {
@@ -19,5 +24,7 @@ public class Player extends Person {
     }
 
     // hit
+    
+    
     // stand
 }
