@@ -1,6 +1,5 @@
 package blackjack;
 
-import cardInfo.Card;
 import deck.Deck;
 import java.util.ArrayList;
 import java.util.Scanner;

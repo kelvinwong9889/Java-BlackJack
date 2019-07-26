@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Deck {
 
     // Define cards list
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
 
     // Create the deck for BlackJack game
     public Deck() {

@@ -24,6 +24,10 @@ public abstract class Person {
 
         for (Card card : personHand) {
             totalPoint += card.getRank().getValue();
+
+            if (card.getRank().equals(card.getRank().ACE) && totalPoint <= 11) {
+                totalPoint += 10;
+            }
         }
 
         return totalPoint;
