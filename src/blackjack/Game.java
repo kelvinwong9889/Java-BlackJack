@@ -36,6 +36,7 @@ public class Game {
 
         playerRound();
         dealerRound();
+        finalResult();
     }
 
     // player's round
@@ -51,18 +52,23 @@ public class Game {
             loop:
             while (true) {
                 try {
-                    System.out.print(persons.get(i).getName() + ", do you want to Stand or Hit (0-Stand, 1-Hit)?");
-                    action = sc.nextInt();
+                    if (persons.get(i).getTotalPoint() < 21) {
+                        System.out.print(persons.get(i).getName() + ", do you want to Stand or Hit (0-Stand, 1-Hit)?");
+                        action = sc.nextInt();
 
-                    switch (action) {
-                        case 0:
-                            System.out.println("You enter 0");
-                            break loop;
-                        case 1:
-                            System.out.println("You enter 1");
-                            break loop;
-                        default:
-                            System.out.println("You must input the number of player between 0 and 1.");
+                        switch (action) {
+                            case 0:
+                                System.out.println("Stand!!!");
+                                break loop;
+                            case 1:
+                                persons.get(i).addCard(deck.giveCard());
+                                System.out.println(persons.get(i).showCards() + " | Point: " + persons.get(i).getTotalPoint());
+                                break loop;
+                            default:
+                                System.out.println("You must input the number of player between 0 and 1.");
+                        }
+                    } else {
+                        break loop;
                     }
                 } catch (Exception e) {
                     System.out.println("You must input the number of player between 0 and 1.");
@@ -78,6 +84,15 @@ public class Game {
         System.out.println("Dealer's Round (" + (persons.size() - 1) + " players)");
         System.out.println("======================================");
         System.out.println(persons.get(persons.size() - 1).showCards() + " | Point: " + persons.get(persons.size() - 1).getTotalPoint());
+        try {
+            if (persons.get(persons.size() - 1).getTotalPoint() < 17) {
+                System.out.println("Lower than 17, add new cards!");
+                persons.get(persons.size() - 1).addCard(deck.giveCard());
+                System.out.println(persons.get(persons.size() - 1).showCards() + " | Point: " + persons.get(persons.size() - 1).getTotalPoint());
+            }
+        } catch (Exception e) {
+            System.out.println("Uh...There is no card in the deck now...");
+        }
         System.out.println();
     }
 
@@ -86,6 +101,9 @@ public class Game {
         System.out.println();
         System.out.println("Final Result (" + (persons.size() - 1) + " players)");
         System.out.println("======================================");
+        for (int i = 0; i < persons.size(); i++) {
+            System.out.println(persons.get(i).showCards() + " | Point: " + persons.get(i).getTotalPoint());
+        }
     }
 
     // Show status message for player

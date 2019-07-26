@@ -30,7 +30,7 @@ public class Deck {
     public Card giveCard() throws Exception {
         if (cards.size() > 0) {
             Card card = cards.remove(cards.size() - 1);
-            System.out.println("Card Size: " + cards.size());
+//            System.out.println("Card Size: " + cards.size());
             return card;
         } else {
             throw new Exception();
