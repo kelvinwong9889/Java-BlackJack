@@ -34,8 +34,7 @@ public class Main {
                     System.out.println("You must input the number of player between 1 and 4.");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-//                System.out.println("You must input the number of player between 1 and 4.");
+                System.out.println("You must input the number of player between 1 and 4.");
                 sc.next();
             }
         }

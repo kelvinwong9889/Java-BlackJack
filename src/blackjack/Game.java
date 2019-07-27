@@ -21,22 +21,26 @@ public class Game {
         this.sc = sc;
     }
 
-    public void start() throws Exception {
-        for (int i = 0; i < persons.size(); i++) {
-            persons.get(i).addCard(deck.giveCard());
-            persons.get(i).addCard(deck.giveCard());
+    public void start() {
+        try {
+            for (int i = 0; i < persons.size(); i++) {
+                persons.get(i).addCard(deck.giveCard());
+                persons.get(i).addCard(deck.giveCard());
+            }
+
+            System.out.println("Game Start! (" + (persons.size() - 1) + " players)");
+            System.out.println("======================================");
+
+            for (int i = 0; i < persons.size(); i++) {
+                System.out.println(persons.get(i).showFirstRoundCards() + " | Point: " + persons.get(i).getTotalPoint());
+            }
+
+            playerRound();
+            dealerRound();
+            finalResult();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        System.out.println("Game Start! (" + (persons.size() - 1) + " players)");
-        System.out.println("======================================");
-
-        for (int i = 0; i < persons.size(); i++) {
-            System.out.println(persons.get(i).showFirstRoundCards() + " | Point: " + persons.get(i).getTotalPoint());
-        }
-
-        playerRound();
-        dealerRound();
-        finalResult();
     }
 
     // player's round
@@ -93,7 +97,6 @@ public class Game {
         } catch (Exception e) {
             System.out.println("Uh...There is no card in the deck now...");
         }
-        System.out.println();
     }
 
     // Final result
@@ -104,9 +107,5 @@ public class Game {
         for (int i = 0; i < persons.size(); i++) {
             System.out.println(persons.get(i).showCards() + " | Point: " + persons.get(i).getTotalPoint());
         }
-    }
-
-    // Show status message for player
-    public void statusMessage() {
     }
 }

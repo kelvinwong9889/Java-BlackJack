@@ -20,6 +20,6 @@ public class Card {
     }
 
     public String toString() {
-        return suit.getSuit() + ":" + rank.getNumber();
+        return suit.getSuit() + ":" + rank.getName();
     }
 }

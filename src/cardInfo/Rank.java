@@ -8,18 +8,18 @@ public enum Rank {
 
     // Card's value and number
     private final int value;
-    private final String number;
+    private final String name;
 
-    private Rank(int value, String number) {
+    private Rank(int value, String name) {
         this.value = value;
-        this.number = number;
+        this.name = name;
     }
 
     public int getValue() {
         return value;
     }
 
-    public String getNumber() {
-        return number;
+    public String getName() {
+        return name;
     }
 }

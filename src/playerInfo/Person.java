@@ -1,6 +1,7 @@
 package playerInfo;
 
 import cardInfo.Card;
+import cardInfo.Rank;
 import java.util.ArrayList;
 
 public abstract class Person {
@@ -25,7 +26,7 @@ public abstract class Person {
         for (Card card : personHand) {
             totalPoint += card.getRank().getValue();
 
-            if (card.getRank().equals(card.getRank().ACE) && totalPoint <= 11) {
+            if (card.getRank().equals(Rank.ACE) && totalPoint <= 11) {
                 totalPoint += 10;
             }
         }
@@ -48,5 +49,9 @@ public abstract class Person {
         }
         message += "]";
         return message;
+    }
+    
+    // Show status message for player
+    public void statusMessage() {
     }
 }
