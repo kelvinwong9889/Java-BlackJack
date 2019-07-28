@@ -3,7 +3,7 @@ package blackjack;
 public class Rule {
 
     // Blackjack
-    public boolean isBlackJack(int personPoint) {
+    public boolean isPoint21(int personPoint) {
         return (personPoint == 21);
     }
 

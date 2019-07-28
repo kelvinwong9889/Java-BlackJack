@@ -1,5 +1,6 @@
 package playerInfo;
 
+import blackjack.Rule;
 import cardInfo.Card;
 import cardInfo.Rank;
 import java.util.ArrayList;
@@ -7,9 +8,11 @@ import java.util.ArrayList;
 public abstract class Person {
 
     private final ArrayList<Card> personHand;
+    private final Rule rule;
 
     public Person() {
         personHand = new ArrayList<>();
+        this.rule = new Rule();
     }
 
     public abstract String getName();
@@ -50,8 +53,17 @@ public abstract class Person {
         message += "]";
         return message;
     }
-    
+
     // Show status message for player
-    public void statusMessage() {
+    public String statusMessage() {
+        int totalPoint = getTotalPoint();
+
+        if (rule.isPoint21(totalPoint) && personHand.size() == 2) {
+            return " BlackJack!";
+        } else if (rule.isBust(totalPoint)) {
+            return " Bust!";
+        } else {
+            return "";
+        }
     }
 }
