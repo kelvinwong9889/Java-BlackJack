@@ -8,23 +8,24 @@ This Java application is about the BlackJack game implemented in OOP concept.
 
 ### File Structure:
 
-    .
-    ├── build
-    ├── dist
+	.
+	├── build
+	├── dist
 	├── nbproject
-	├── src                    			# source file
-		├── blackjack                   # program starting point and game information
-		├── cardInfo                    # card information
-		├── deck                    	# deck information
-		└── playerInfo					# player information
+	├── src						# source file
+	│   ├── blackjack				# program starting point and game information
+	│   ├── cardInfo				# card information
+	│   ├── deck					# deck information
+	│   └── playerInfo				# player information
 	├── test
 	├── .gitignore
 	├── build.xml
 	├── manifest.mf
-    └── README.md
+	└── README.md
 
 
 ### Class Diagram:
+![alt text](http://url/to/img.png)
 <img src="https://imgur.com/jLJrDel" alt="class_diagram" />
 
 ### Image Preview:
