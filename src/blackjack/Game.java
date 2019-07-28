@@ -25,6 +25,7 @@ public class Game {
         this.sc = sc;
     }
 
+    // Game process
     public void start() {
         initialize();
         playerRound();
@@ -32,6 +33,7 @@ public class Game {
         finalResult();
     }
 
+    // Initialize players and dealer with two cards
     public void initialize() {
         try {
             for (int i = 0; i < players.size(); i++) {
@@ -45,15 +47,15 @@ public class Game {
             System.out.println("======================================");
 
             for (int i = 0; i < players.size(); i++) {
-                System.out.println(players.get(i).showFirstRoundCards() + " | Point: " + players.get(i).getTotalPoint());
+                System.out.println(players.get(i).showFirstRoundCards());
             }
-            System.out.println(dealer.showFirstRoundCards() + " | Point: " + dealer.getTotalPoint());
+            System.out.println(dealer.showFirstRoundCards());
         } catch (Exception e) {
             System.out.println("Can not initalize person hand");
         }
     }
 
-    // player's round
+    // Player's round
     public void playerRound() {
         int action;
 
@@ -61,7 +63,7 @@ public class Game {
         System.out.println("Players' Round (" + players.size() + " players)");
         System.out.println("======================================");
         for (int i = 0; i < players.size(); i++) {
-            System.out.println(players.get(i).showCards() + " | Point: " + players.get(i).getTotalPoint() + " | " + playerMessage(players.get(i), dealer));
+            System.out.println(players.get(i).showCards() + " | " + playerMessage(players.get(i), dealer));
 
             loop:
             while (true) {
@@ -76,7 +78,7 @@ public class Game {
                                 break loop;
                             case 1:
                                 players.get(i).addCard(deck.giveCard());
-                                System.out.println(players.get(i).showCards() + " | Point: " + players.get(i).getTotalPoint() + " | " + playerMessage(players.get(i), dealer));
+                                System.out.println(players.get(i).showCards() + " | " + playerMessage(players.get(i), dealer));
                                 break loop;
                             default:
                                 System.out.println("You must input the number of player between 0 and 1.");
@@ -92,18 +94,31 @@ public class Game {
         }
     }
 
-    // dealer's round
+    // Dealer's round
     public void dealerRound() {
         try {
+            int numOfFinishGame = 0;
+
+            for (int i = 0; i < players.size(); i++) {
+                if (players.get(i).getTotalPoint() >= 21) {
+                    numOfFinishGame++;
+                }
+            }
+
             System.out.println();
             System.out.println("Dealer's Round (" + players.size() + " players)");
             System.out.println("======================================");
-            System.out.println(dealer.showCards() + " | Point: " + dealer.getTotalPoint());
 
-            if (dealer.getTotalPoint() < 17) {
-                System.out.println("Lower than 17, add new cards!");
-                dealer.addCard(deck.giveCard());
+            if (numOfFinishGame == players.size()) {
+                System.out.println("All players have won or lost the game!");
+            } else {
                 System.out.println(dealer.showCards() + " | Point: " + dealer.getTotalPoint());
+
+                if (dealer.getTotalPoint() < 17) {
+                    System.out.println("Lower than 17, add new cards!");
+                    dealer.addCard(deck.giveCard());
+                    System.out.println(dealer.showCards() + " | Point: " + dealer.getTotalPoint());
+                }
             }
         } catch (Exception e) {
             System.out.println("Uh...There is no card in the deck now...");
@@ -129,17 +144,19 @@ public class Game {
         int dealerTotalPoint = dealer.getTotalPoint();
 
         String status = "";
-        if (rule.isPoint21(playerTotalPoint) && player.getHandLength() == 2) {
-            status = " BlackJack!";
-        } else if (rule.isBust(playerTotalPoint)) {
-            status = " Bust!";
-        } else if (isFinalResult) {
-            if (rule.isWin(playerTotalPoint, dealerTotalPoint) || rule.isBust(dealerTotalPoint)) {
-                status = "Win!";
-            } else if (rule.isPush(playerTotalPoint, dealerTotalPoint) && rule.isBust(dealerTotalPoint)) {
-                status = "Push!";
-            } else if (rule.isLose(playerTotalPoint, dealerTotalPoint) && rule.isBust(dealerTotalPoint)) {
+        if (isFinalResult) {
+            if (rule.isLose(playerTotalPoint, dealerTotalPoint) && !rule.isBust(dealerTotalPoint)) {
                 status = "Lose!";
+            } else if (rule.isPush(playerTotalPoint, dealerTotalPoint) && !rule.isBust(dealerTotalPoint)) {
+                status = "Push!";
+            } else if (rule.isWin(playerTotalPoint, dealerTotalPoint) || rule.isBust(dealerTotalPoint)) {
+                status = "Win!";
+            }
+        } else {
+            if (rule.isPoint21(playerTotalPoint) && player.getHandLength() == 2) {
+                status = "BlackJack!";
+            } else if (rule.isBust(playerTotalPoint)) {
+                status = "Bust!";
             }
         }
         return status;

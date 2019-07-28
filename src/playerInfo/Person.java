@@ -36,6 +36,13 @@ public abstract class Person {
         }
 
         return totalPoint;
+
+        // TESTING ALL BLACKJACK
+//        return 21;
+        // TESTING ALL BUST
+//        return 99;
+        // TESTING ALL PUSH
+//        return 10;
     }
 
     // Show cards (only for first round)
