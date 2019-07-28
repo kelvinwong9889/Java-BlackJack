@@ -144,19 +144,17 @@ public class Game {
         int dealerTotalPoint = dealer.getTotalPoint();
 
         String status = "";
-        if (isFinalResult) {
+        if (rule.isPoint21(playerTotalPoint) && player.getHandLength() == 2) {
+            status = "BlackJack!";
+        } else if (rule.isBust(playerTotalPoint)) {
+            status = "Bust!";
+        } else if (isFinalResult) {
             if (rule.isLose(playerTotalPoint, dealerTotalPoint) && !rule.isBust(dealerTotalPoint)) {
                 status = "Lose!";
-            } else if (rule.isPush(playerTotalPoint, dealerTotalPoint) && !rule.isBust(dealerTotalPoint)) {
+            } else if (rule.isPush(playerTotalPoint, dealerTotalPoint) && !rule.isBust(dealerTotalPoint) && !rule.isBust(playerTotalPoint)) {
                 status = "Push!";
-            } else if (rule.isWin(playerTotalPoint, dealerTotalPoint) || rule.isBust(dealerTotalPoint)) {
+            } else if ((rule.isWin(playerTotalPoint, dealerTotalPoint) || rule.isBust(dealerTotalPoint)) && !rule.isBust(playerTotalPoint)) {
                 status = "Win!";
-            }
-        } else {
-            if (rule.isPoint21(playerTotalPoint) && player.getHandLength() == 2) {
-                status = "BlackJack!";
-            } else if (rule.isBust(playerTotalPoint)) {
-                status = "Bust!";
             }
         }
         return status;
