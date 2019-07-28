@@ -25,8 +25,7 @@ This Java application is about the BlackJack game implemented in OOP concept.
 
 
 ### Class Diagram:
-![alt text](http://url/to/img.png)
-<img src="https://imgur.com/jLJrDel" alt="class_diagram" />
+![Java-OOP-BlackJack](https://user-images.githubusercontent.com/39684332/62007751-ee65ec80-b183-11e9-959a-9ca943340ae0.png)
 
 ### Image Preview:
-<img src="https://imgur.com/s0WZQLC" alt="image_preview" />
+![game-screenshot-1](https://user-images.githubusercontent.com/39684332/62007791-6207f980-b184-11e9-9cd0-6c61e6ec1734.JPG)
