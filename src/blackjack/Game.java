@@ -11,25 +11,28 @@ public class Game {
     private final ArrayList<Person> players = new ArrayList<>();
     private final Person dealer;
     private final Deck deck;
+    private final Rule rule;
     private final Scanner sc;
+    private boolean isFinalResult = false;
 
-    public Game(int numOfPlayer, Person dealer, Deck deck, Scanner sc) {
+    public Game(int numOfPlayer, Person dealer, Deck deck, Rule rule, Scanner sc) {
         for (int i = 0; i < numOfPlayer; i++) {
             players.add(new Player("Player " + (i + 1)));
         }
         this.dealer = dealer;
         this.deck = deck;
+        this.rule = rule;
         this.sc = sc;
     }
 
     public void start() {
-        initializePersonHand();
+        initialize();
         playerRound();
         dealerRound();
         finalResult();
     }
 
-    public void initializePersonHand() {
+    public void initialize() {
         try {
             for (int i = 0; i < players.size(); i++) {
                 players.get(i).addCard(deck.giveCard());
@@ -58,7 +61,7 @@ public class Game {
         System.out.println("Players' Round (" + players.size() + " players)");
         System.out.println("======================================");
         for (int i = 0; i < players.size(); i++) {
-            System.out.println(players.get(i).showCards() + " | Point: " + players.get(i).getTotalPoint() + " | " + players.get(i).statusMessage());
+            System.out.println(players.get(i).showCards() + " | Point: " + players.get(i).getTotalPoint() + " | " + playerMessage(players.get(i), dealer));
 
             loop:
             while (true) {
@@ -73,7 +76,7 @@ public class Game {
                                 break loop;
                             case 1:
                                 players.get(i).addCard(deck.giveCard());
-                                System.out.println(players.get(i).showCards() + " | Point: " + players.get(i).getTotalPoint() + " | " + players.get(i).statusMessage());
+                                System.out.println(players.get(i).showCards() + " | Point: " + players.get(i).getTotalPoint() + " | " + playerMessage(players.get(i), dealer));
                                 break loop;
                             default:
                                 System.out.println("You must input the number of player between 0 and 1.");
@@ -109,12 +112,36 @@ public class Game {
 
     // Final result
     public void finalResult() {
+        isFinalResult = true;
+
         System.out.println();
         System.out.println("Final Result (" + players.size() + " players)");
         System.out.println("======================================");
         for (int i = 0; i < players.size(); i++) {
-            System.out.println(players.get(i).showCards() + " | Point: " + players.get(i).getTotalPoint() + " | " + players.get(i).statusMessage());
+            System.out.println(players.get(i).showCards() + " | Point: " + players.get(i).getTotalPoint() + " | " + playerMessage(players.get(i), dealer));
         }
-        System.out.println(dealer.showCards() + " | Point: " + dealer.getTotalPoint() + " | " + dealer.statusMessage());
+        System.out.println(dealer.showCards() + " | Point: " + dealer.getTotalPoint());
+    }
+
+    // Show status message for player
+    public String playerMessage(Person player, Person dealer) {
+        int playerTotalPoint = player.getTotalPoint();
+        int dealerTotalPoint = dealer.getTotalPoint();
+
+        String status = "";
+        if (rule.isPoint21(playerTotalPoint) && player.getHandLength() == 2) {
+            status = " BlackJack!";
+        } else if (rule.isBust(playerTotalPoint)) {
+            status = " Bust!";
+        } else if (isFinalResult) {
+            if (rule.isWin(playerTotalPoint, dealerTotalPoint) || rule.isBust(dealerTotalPoint)) {
+                status = "Win!";
+            } else if (rule.isPush(playerTotalPoint, dealerTotalPoint) && rule.isBust(dealerTotalPoint)) {
+                status = "Push!";
+            } else if (rule.isLose(playerTotalPoint, dealerTotalPoint) && rule.isBust(dealerTotalPoint)) {
+                status = "Lose!";
+            }
+        }
+        return status;
     }
 }

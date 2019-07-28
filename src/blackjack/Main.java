@@ -25,9 +25,11 @@ public class Main {
                     Person dealer = new Dealer();
                     // Create deck and shuffle 52 cards
                     Deck deck = new Deck();
+                    // Create rule for game
+                    Rule rule = new Rule();
 
                     // Start blackjack game once only
-                    Game game = new Game(numOfPlayer, dealer, deck, sc);
+                    Game game = new Game(numOfPlayer, dealer, deck, rule, sc);
                     game.start();
                     break;
                 } else {

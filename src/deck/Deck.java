@@ -39,8 +39,8 @@ public class Deck {
 
     // TESTING
     public void printCards() {
-        for (Card card : cards) {
+        cards.forEach((card) -> {
             System.out.println(card.toString());
-        }
+        });
     }
 }
