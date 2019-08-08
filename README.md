@@ -10,7 +10,7 @@ This Java application is about the BlackJack game implemented in OOP concept.
 ```
 1. Install NetBeans IDE 8.2 or above
 2. Download zip from github
-3. Unzip the source code to `C:\Users\User\Documents\NetBeansProjects`
+3. Unzip the source code to C:\Users\User\Documents\NetBeansProjects directory
 4. Open your NetBeans IDE and click "Open Project" to choose your source code folder
 5. Click on the project name and click "Run Project" or F6 Button
 ```
