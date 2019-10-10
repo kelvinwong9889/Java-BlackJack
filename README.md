@@ -1,7 +1,7 @@
 # Java-BlackJack
 *********************************
 ### Description:
-This Java application is about the BlackJack game implemented in OOP concept.
+This Java application is about the BlackJack game implemented in basics of Java (for example: variable, data type, method, object call, etc.).
 
 ### Prerequisites:
 - JDK 1.8 or above
