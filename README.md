@@ -1,4 +1,4 @@
-# Java-OOP-BlackJack
+# Java-BlackJack
 ********************************
 ### Description:
 This Java application is about the BlackJack game implemented in OOP concept.
